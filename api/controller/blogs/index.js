@@ -1,6 +1,14 @@
 const Blog = require('../model/Blogs')
 module.exports.getAllBlog = async (req, res) => {
-    res.send('all blog route');
+    const data = await Blog.find({});
+    // res.json(data)
+    return res.status(200).json({
+        message: 'success',
+        code: 200,
+        error: false,
+        response: data,
+    });
+
 }
 module.exports.saveBlog = async (req, res) => {
     try {
