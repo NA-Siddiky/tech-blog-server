@@ -24,9 +24,31 @@ module.exports.saveBlog = async (req, res) => {
     }
 }
 
-module.exports.updateBlog = async (req, res) => {
-    res.send('update route');
-}
+module.exports.updateBlog = async (req, res, next) => {
+    const { id } = req.params;
+    const blogInfo = req.body;
+
+    try {
+        const blog = await Blog.findById({ _id: id });
+
+        if (blog) {
+            const updateBlog = await Blog.findByIdAndUpdate(id, blogInfo);
+
+            if (updateBlog) {
+                const updatedBlog = await Blog.findById({ _id: id });
+                return res.status(200).json({
+                    message: 'success',
+                    code: 200,
+                    error: false,
+                    response: updatedBlog,
+                });
+            }
+        }
+    } catch (err) {
+        next(err);
+    }
+};
+
 module.exports.deleteBlog = async (req, res) => {
     res.send('delete route');
 }
