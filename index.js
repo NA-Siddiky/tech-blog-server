@@ -18,7 +18,7 @@ client.connect(err => {
     console.log("Error is:", err);
     console.log("Database connected Successfully");
 
-    const blogCollections = client.db("tech-blogs").collection("all-blogs");
+    const blogCollections = client.db('tech-blogs').collection('all-blogs');
 
     app.get('/blogs', (req, res) => {
         blogCollections.find()
