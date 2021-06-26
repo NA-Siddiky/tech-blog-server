@@ -23,7 +23,6 @@ module.exports.saveBlog = async (req, res) => {
         console.log(error);
     }
 }
-
 module.exports.updateBlog = async (req, res, next) => {
     const { id } = req.params;
     const blogInfo = req.body;
@@ -48,7 +47,6 @@ module.exports.updateBlog = async (req, res, next) => {
         next(err);
     }
 };
-
 module.exports.deleteBlog = async (req, res) => {
     res.send('delete route');
 }
