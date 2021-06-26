@@ -10,6 +10,18 @@ module.exports.getAllBlog = async (req, res) => {
     });
 
 }
+module.exports.singleBlog = async (req, res) => {
+    const { id } = req.params;
+    const data = await Blog.findOne({_id: id});
+    
+    return res.status(200).json({
+        message: 'success',
+        code: 200,
+        error: false,
+        response: data,
+    });
+
+}
 module.exports.saveBlog = async (req, res) => {
     try {
         const savedBlog = await Blog.create(req.body);
